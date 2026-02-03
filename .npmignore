@@ -37,6 +37,7 @@ logs/
 # Documentation (will be on GitHub Pages)
 docs/
 mkdocs.yml
+requirements.txt
 .qoder/
 
 # OS files
