@@ -1,0 +1,242 @@
+site_name: Resend Full MCP - Documentation
+site_description: Documentation complète du serveur MCP Resend et du Skill Resend-Expert
+site_author: QrCommunication
+site_url: https://qrcommunication.github.io/resend-full-mcp
+
+repo_name: QrCommunication/resend-full-mcp
+repo_url: https://github.com/QrCommunication/resend-full-mcp
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: fr
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Passer au mode sombre
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Passer au mode clair
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+
+plugins:
+  - search:
+      lang: fr
+  - tags
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/QrCommunication/resend-full-mcp
+    - icon: fontawesome/solid/envelope
+      link: mailto:contact@qrcommunication.com
+  version:
+    provider: mike
+  analytics:
+    feedback:
+      title: Cette page vous a été utile ?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: Oui, cette page est utile
+          data: 1
+          note: Merci pour votre retour !
+        - icon: material/emoticon-sad-outline
+          name: Non, cette page peut être améliorée
+          data: 0
+          note: Merci ! Aidez-nous à améliorer cette page en créant une issue sur GitHub.
+
+nav:
+  - Accueil: index.md
+  - Guide de démarrage:
+    - Introduction et Aperçu: Introduction et Aperçu.md
+    - Démarrage Rapide: Démarrage Rapide.md
+    - Configuration des Clients MCP: Configuration des Clients MCP.md
+  
+  - Architecture:
+    - Architecture Technique: Architecture Technique.md
+    - Protocole MCP et Interface: Protocole MCP et Interface.md
+  
+  - Skill Resend-Expert:
+    - Guide complet: Skill Resend-Expert.md
+  
+  - Fonctionnalités et Modules:
+    - Module Emails:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Emails/Module Emails.md
+      - send_email: Fonctionnalités et Modules/Module Emails/Outil send_email.md
+      - send_batch_emails: Fonctionnalités et Modules/Module Emails/Outil send_batch_emails.md
+      - list_emails: Fonctionnalités et Modules/Module Emails/Outil list_emails.md
+      - get_email: Fonctionnalités et Modules/Module Emails/Outil get_email.md
+      - update_email: Fonctionnalités et Modules/Module Emails/Outil update_email.md
+      - cancel_email: Fonctionnalités et Modules/Module Emails/Outil cancel_email.md
+      - list_email_attachments: Fonctionnalités et Modules/Module Emails/Outil list_email_attachments.md
+      - get_email_attachment: Fonctionnalités et Modules/Module Emails/Outil get_email_attachment.md
+    
+    - Module Emails Reçus:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Emails Reçus/Module Emails Reçus.md
+      - list_received_emails: Fonctionnalités et Modules/Module Emails Reçus/Outil list_received_emails.md
+      - get_received_email: Fonctionnalités et Modules/Module Emails Reçus/Outil get_received_email.md
+      - list_received_email_attachments: Fonctionnalités et Modules/Module Emails Reçus/Outil list_received_email_attachments.md
+      - get_received_email_attachment: Fonctionnalités et Modules/Module Emails Reçus/Outil get_received_email_attachment.md
+    
+    - Module Domaines:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Domaines/Module Domaines.md
+      - create_domain: Fonctionnalités et Modules/Module Domaines/Outil create_domain.md
+      - list_domains: Fonctionnalités et Modules/Module Domaines/Outil list_domains.md
+      - get_domain: Fonctionnalités et Modules/Module Domaines/Outil get_domain.md
+      - update_domain: Fonctionnalités et Modules/Module Domaines/Outil update_domain.md
+      - delete_domain: Fonctionnalités et Modules/Module Domaines/Outil delete_domain.md
+      - verify_domain: Fonctionnalités et Modules/Module Domaines/Outil verify_domain.md
+    
+    - Module Clés API:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Clés API/Module Clés API.md
+      - create_api_key: Fonctionnalités et Modules/Module Clés API/Outil Création de Clé API.md
+      - list_api_keys: Fonctionnalités et Modules/Module Clés API/Outil Liste des Clés API.md
+      - delete_api_key: Fonctionnalités et Modules/Module Clés API/Outil Suppression de Clé API.md
+    
+    - Module Audiences:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Audiences/Module Audiences.md
+      - create_audience: Fonctionnalités et Modules/Module Audiences/Création d'une Audience.md
+      - list_audiences: Fonctionnalités et Modules/Module Audiences/Liste des Audiences.md
+      - get_audience: Fonctionnalités et Modules/Module Audiences/Détails d'une Audience.md
+      - delete_audience: Fonctionnalités et Modules/Module Audiences/Suppression d'une Audience.md
+    
+    - Module Contacts:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Contacts/Module Contacts.md
+      - Opérations CRUD: Fonctionnalités et Modules/Module Contacts/Opérations CRUD de Base.md
+      - Gestion des Segments: Fonctionnalités et Modules/Module Contacts/Gestion des Segments.md
+      - Abonnements aux Sujets: Fonctionnalités et Modules/Module Contacts/Abonnements aux Sujets.md
+    
+    - Module Templates:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Templates/Module Templates.md
+      - create_template: Fonctionnalités et Modules/Module Templates/Création de Template.md
+      - list_templates: Fonctionnalités et Modules/Module Templates/Liste des Templates.md
+      - get_template: Fonctionnalités et Modules/Module Templates/Récupération de Template.md
+      - update_template: Fonctionnalités et Modules/Module Templates/Mise à Jour de Template.md
+      - delete_template: Fonctionnalités et Modules/Module Templates/Suppression de Template.md
+      - publish_template: Fonctionnalités et Modules/Module Templates/Publication de Template.md
+      - duplicate_template: Fonctionnalités et Modules/Module Templates/Duplication de Template.md
+    
+    - Module Broadcasts:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Broadcasts/Module Broadcasts.md
+      - create_broadcast: Fonctionnalités et Modules/Module Broadcasts/Création de Broadcast.md
+      - list_broadcasts: Fonctionnalités et Modules/Module Broadcasts/Liste des Broadcasts.md
+      - get_broadcast: Fonctionnalités et Modules/Module Broadcasts/Détails d'un Broadcast.md
+      - update_broadcast: Fonctionnalités et Modules/Module Broadcasts/Mise à Jour d'un Broadcast.md
+      - delete_broadcast: Fonctionnalités et Modules/Module Broadcasts/Suppression d'un Broadcast.md
+      - send_broadcast: Fonctionnalités et Modules/Module Broadcasts/Envoi d'un Broadcast.md
+    
+    - Module Webhooks:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Webhooks/Module Webhooks.md
+      - create_webhook: Fonctionnalités et Modules/Module Webhooks/Outil create_webhook.md
+      - list_webhooks: Fonctionnalités et Modules/Module Webhooks/Outil list_webhooks.md
+      - get_webhook: Fonctionnalités et Modules/Module Webhooks/Outil get_webhook.md
+      - update_webhook: Fonctionnalités et Modules/Module Webhooks/Outil update_webhook.md
+      - delete_webhook: Fonctionnalités et Modules/Module Webhooks/Outil delete_webhook.md
+    
+    - Module Segments:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Segments/Module Segments.md
+      - create_segment: Fonctionnalités et Modules/Module Segments/Outil create_segment.md
+      - list_segments: Fonctionnalités et Modules/Module Segments/Outil list_segments.md
+      - get_segment: Fonctionnalités et Modules/Module Segments/Outil get_segment.md
+      - delete_segment: Fonctionnalités et Modules/Module Segments/Outil delete_segment.md
+    
+    - Module Topics:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Topics/Module Topics.md
+      - create_topic: Fonctionnalités et Modules/Module Topics/Outil create_topic.md
+      - list_topics: Fonctionnalités et Modules/Module Topics/Outil list_topics.md
+      - get_topic: Fonctionnalités et Modules/Module Topics/Outil get_topic.md
+      - update_topic: Fonctionnalités et Modules/Module Topics/Outil update_topic.md
+      - delete_topic: Fonctionnalités et Modules/Module Topics/Outil delete_topic.md
+    
+    - Module Propriétés de Contact:
+      - Vue d'ensemble: Fonctionnalités et Modules/Module Propriétés de Contact/Module Propriétés de Contact.md
+      - create_contact_property: Fonctionnalités et Modules/Module Propriétés de Contact/Outil _ create_contact_property.md
+      - list_contact_properties: Fonctionnalités et Modules/Module Propriétés de Contact/Outil _ list_contact_properties.md
+      - get_contact_property: Fonctionnalités et Modules/Module Propriétés de Contact/Outil _ get_contact_property.md
+      - update_contact_property: Fonctionnalités et Modules/Module Propriétés de Contact/Outil _ update_contact_property.md
+      - delete_contact_property: Fonctionnalités et Modules/Module Propriétés de Contact/Outil _ delete_contact_property.md
+  
+  - Référence API:
+    - Vue d'ensemble: Référence API/Référence API.md
+    - API Emails: Référence API/API Emails.md
+    - API Emails Reçus: Référence API/API Emails Reçus.md
+    - API Domaines: Référence API/API Domaines.md
+    - API Clés API: Référence API/API Clés API.md
+    - API Audiences: Référence API/API Audiences.md
+    - API Contacts: Référence API/API Contacts.md
+    - API Templates: Référence API/API Templates.md
+    - API Broadcasts: Référence API/API Broadcasts.md
+    - API Webhooks: Référence API/API Webhooks.md
+    - API Segments: Référence API/API Segments.md
+    - API Topics: Référence API/API Topics.md
+    - API Propriétés de Contact: Référence API/API Propriétés de Contact.md
+  
+  - Sécurité et Erreurs:
+    - Sécurité et Gestion des Erreurs: Sécurité et Gestion des Erreurs.md
+  
+  - Développement:
+    - Développement et Tests: Développement et Tests.md
+    - Déploiement et Maintenance: Déploiement et Maintenance.md
+  
+  - Aide:
+    - Dépannage et FAQ: Dépannage et FAQ.md
+
+copyright: Copyright &copy; 2026 Qr Communication

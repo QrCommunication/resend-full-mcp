@@ -2,7 +2,7 @@
 node_modules/
 yarn.lock
 pnpm-lock.yaml
-
+#.qoder/
 # Build output
 dist/
 build/
@@ -44,3 +44,10 @@ coverage/
 # OS
 Thumbs.db
 .DS_Store
+
+# MkDocs
+site/
+.cache/
+
+# Qoder (ne pas versionner le cache local)
+.qoder/repowiki/

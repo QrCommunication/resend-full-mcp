@@ -1,0 +1,77 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Make binary executable
+        run: chmod +x dist/index.js
+
+      - name: Extract version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Update package.json version
+        run: |
+          npm version ${{ steps.get_version.outputs.VERSION }} --no-git-tag-version
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: |
+            ## 🚀 Release ${{ github.ref_name }}
+            
+            ### 📦 Installation
+            
+            ```bash
+            npm install -g @qrcommunication/resend-full-mcp
+            # or
+            npx @qrcommunication/resend-full-mcp
+            ```
+            
+            ### 📚 Documentation
+            
+            - [Documentation complète](https://qrcommunication.github.io/resend-full-mcp/)
+            - [README](https://github.com/QrCommunication/resend-full-mcp#readme)
+            - [CHANGELOG](https://github.com/QrCommunication/resend-full-mcp/blob/main/CHANGELOG.md)
+            
+            ### 🎯 Nouveautés
+            
+            Voir le [CHANGELOG](https://github.com/QrCommunication/resend-full-mcp/blob/main/CHANGELOG.md) pour les détails complets.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

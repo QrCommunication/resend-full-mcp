@@ -1,5 +1,11 @@
 # Resend Full MCP Server
 
+[![npm version](https://badge.fury.io/js/@qrcommunication%2Fresend-full-mcp.svg)](https://www.npmjs.com/package/@qrcommunication/resend-full-mcp)
+[![CI](https://github.com/QrCommunication/resend-full-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/QrCommunication/resend-full-mcp/actions/workflows/ci.yml)
+[![Documentation](https://github.com/QrCommunication/resend-full-mcp/actions/workflows/deploy-docs.yml/badge.svg)](https://qrcommunication.github.io/resend-full-mcp/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org)
+
 A comprehensive **Model Context Protocol (MCP)** server that provides 100% coverage of the **Resend API**. This implementation enables AI assistants to seamlessly integrate with Resend's powerful email infrastructure, covering all 12 modules and 70+ tools available in the Resend email platform.
 
 ## 🚀 Overview
@@ -210,9 +216,47 @@ RATE_LIMIT=2
 
 ### MCP Client Configuration
 
+This MCP server is compatible with **any MCP-compliant client**. Below are configurations for popular AI coding assistants.
+
 #### Claude Desktop
 
 Add to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "resend": {
+      "command": "npx",
+      "args": ["-y", "@qrcommunication/resend-full-mcp"],
+      "env": {
+        "RESEND_API_KEY": "re_xxxxxxxxxxxxxxxxxxxx"
+      }
+    }
+  }
+}
+```
+
+#### Cursor
+
+Add to your `.cursor/mcp.json` or settings:
+
+```json
+{
+  "mcpServers": {
+    "resend": {
+      "command": "npx",
+      "args": ["-y", "@qrcommunication/resend-full-mcp"],
+      "env": {
+        "RESEND_API_KEY": "re_xxxxxxxxxxxxxxxxxxxx"
+      }
+    }
+  }
+}
+```
+
+#### Windsurf
+
+Add to your Windsurf MCP configuration:
 
 ```json
 {
@@ -261,6 +305,27 @@ Add to your MCP settings:
     }
   }
 }
+```
+
+#### Generic MCP Client
+
+For any other MCP-compatible client, use this standard configuration:
+
+```json
+{
+  "name": "resend",
+  "command": "npx",
+  "args": ["-y", "@qrcommunication/resend-full-mcp"],
+  "env": {
+    "RESEND_API_KEY": "re_xxxxxxxxxxxxxxxxxxxx"
+  }
+}
+```
+
+Or run directly:
+
+```bash
+RESEND_API_KEY=re_xxxx npx @qrcommunication/resend-full-mcp
 ```
 
 ## 📖 Usage
@@ -443,6 +508,50 @@ AI: I'll set up the broadcast campaign...
 
 This will return all 70+ tools with their descriptions and input schemas.
 
+## 🎓 Resend Expert Skill
+
+This package includes a comprehensive **resend-expert** skill that is automatically installed when you install the MCP server via npm.
+
+### Supported Directories
+
+The skill is auto-installed to all detected AI CLI directories:
+
+| Directory | CLI |
+|-----------|-----|
+| `~/.claude/skills/` | Claude Code, Claude CLI |
+| `~/.agents/skills/` | Cursor, Windsurf, other AI agents |
+| `~/.config/ai/skills/` | Generic AI configuration |
+
+### What's Included
+
+The skill provides detailed guidance on:
+
+- **Architecture patterns** for web, mobile, and backend applications
+- **React Email templates** with best practices
+- **Webhook implementation** with signature verification
+- **Audience & contact management** for marketing campaigns
+- **Broadcast campaigns** setup and execution
+- **Error handling** and retry strategies
+- **Security best practices** (SPF, DKIM, DMARC)
+- **Performance optimization** with queues and batch operations
+- **Framework integrations** (Next.js, Express, NestJS, React Native)
+
+### Manual Installation
+
+If the automatic installation doesn't work, manually copy the skill to your preferred directory:
+
+```bash
+# For Claude Code
+cp -r node_modules/resend-full-mcp/skills/resend-expert ~/.claude/skills/
+
+# For Cursor/Windsurf/other agents
+cp -r node_modules/resend-full-mcp/skills/resend-expert ~/.agents/skills/
+
+# For generic AI config
+mkdir -p ~/.config/ai/skills
+cp -r node_modules/resend-full-mcp/skills/resend-expert ~/.config/ai/skills/
+```
+
 ## 🏗️ Project Structure
 
 ```
@@ -450,6 +559,11 @@ resend-full-mcp/
 ├── src/
 │   └── index.ts          # Main MCP server implementation
 ├── dist/                 # Compiled JavaScript (generated)
+├── skills/
+│   └── resend-expert/    # Claude Code skill for Resend best practices
+│       └── SKILL.md      # Comprehensive implementation guide
+├── scripts/
+│   └── postinstall.js    # Auto-installs skill to ~/.claude/skills/
 ├── package.json          # Project dependencies and scripts
 ├── tsconfig.json         # TypeScript configuration
 ├── .env                  # Environment variables (not in git)

@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [18.x, 20.x, 22.x]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          test -f dist/index.js || exit 1
+          test -f dist/index.d.ts || exit 1
+        shell: bash
+
+      - name: Check executable permissions (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          chmod +x dist/index.js
+          test -x dist/index.js || exit 1
+
+      - name: Test package creation
+        run: npm pack --dry-run
+
+      - name: Verify skills directory
+        run: |
+          test -f skills/resend-expert/SKILL.md || exit 1
+        shell: bash
+
+      - name: Verify postinstall script
+        run: |
+          test -f scripts/postinstall.js || exit 1
+        shell: bash
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check TypeScript types
+        run: npx tsc --noEmit
+
+  package-size:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Check package size
+        run: |
+          SIZE=$(npm pack --dry-run 2>&1 | grep "package size:" | awk '{print $3}')
+          echo "Package size: $SIZE"
+          # Alert if package is larger than 50 KB
+          SIZE_NUM=$(echo $SIZE | sed 's/[^0-9.]//g')
+          if (( $(echo "$SIZE_NUM > 50" | bc -l) )); then
+            echo "⚠️ Warning: Package size is larger than 50 KB"
+          else
+            echo "✅ Package size is acceptable"
+          fi

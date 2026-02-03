@@ -1,0 +1,54 @@
+# Source files (only dist/ should be published)
+src/
+tsconfig.json
+
+# Tests
+*.test.ts
+*.spec.ts
+test/
+tests/
+__tests__/
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation (will be on GitHub Pages)
+docs/
+mkdocs.yml
+.qoder/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.tsbuildinfo
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+site/
+node_modules/
