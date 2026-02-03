@@ -1,90 +1,137 @@
 # Resend Full MCP Server
 
-A comprehensive Model Context Protocol (MCP) server that provides 100% coverage of the Resend API, enabling AI assistants to send emails, manage domains, configure webhooks, handle contacts and audiences, and more.
+A comprehensive **Model Context Protocol (MCP)** server that provides 100% coverage of the **Resend API**. This implementation enables AI assistants to seamlessly integrate with Resend's powerful email infrastructure, covering all 12 modules and 70+ tools available in the Resend email platform.
 
-## Overview
+## 🚀 Overview
 
-This MCP server exposes the complete Resend API functionality through the Model Context Protocol, allowing AI assistants and LLM applications to seamlessly integrate with Resend's powerful email infrastructure. Whether you need to send transactional emails, manage broadcast campaigns, or configure domain settings, this server provides all the tools you need.
+This MCP server exposes the complete Resend API functionality through the Model Context Protocol, allowing AI assistants and LLM applications to handle everything from sending transactional emails to managing broadcast campaigns and configuring domain settings.
 
-## Features
+## ✨ Features
 
-### 🎯 100% API Coverage
+### 🎯 Complete API Coverage
 
-This MCP server implements **all** endpoints from the Resend API:
+This MCP server implements **all** endpoints from the Resend API across 12 comprehensive modules:
 
-#### 📧 Email Operations
-- **Send Email** - Send individual transactional or marketing emails
-- **Batch Send** - Send up to 100 emails in a single request
-- **List Emails** - Retrieve sent emails with pagination
-- **Get Email** - Fetch status and details of a specific email
-- **Update Email** - Modify email properties
-- **Cancel Email** - Cancel a scheduled email before it's sent
-- **Schedule Email** - Schedule emails to be sent at a specific time
+#### 📧 **Emails** (8 tools)
+- **send_email** - Send individual transactional or marketing emails with HTML/text, attachments, and templates
+- **send_batch_emails** - Send up to 100 emails in a single request
+- **list_emails** - Retrieve sent emails with pagination
+- **get_email** - Fetch status and details of a specific email
+- **update_email** - Modify email properties and scheduled emails
+- **cancel_email** - Cancel a scheduled email before it's sent
+- **list_email_attachments** - List attachments for sent emails
+- **get_email_attachment** - Retrieve specific attachment
 
-#### 🌐 Domain Management
-- **Create Domain** - Add and configure new sending domains
-- **List Domains** - View all configured domains
-- **Get Domain** - Retrieve details for a specific domain
-- **Update Domain** - Modify domain settings
-- **Delete Domain** - Remove a domain from your account
-- **Verify Domain** - Verify DNS records for domain authentication
-- **Receiving Domains** - Configure domains for inbound email processing
+#### 📨 **Receiving Emails** (4 tools)
+- **list_received_emails** - List received emails
+- **get_received_email** - Get received email details
+- **list_received_email_attachments** - List attachments from received emails
+- **get_received_email_attachment** - Get specific received email attachment
 
-#### 🔔 Webhook Management
-- **Create Webhook** - Set up webhooks for email events
-- **List Webhooks** - View all configured webhooks
-- **Get Webhook** - Retrieve webhook configuration details
-- **Update Webhook** - Modify webhook settings
-- **Delete Webhook** - Remove a webhook
-- **Event Types Supported**:
-  - `email.sent` - Email was accepted by Resend
-  - `email.delivered` - Email was successfully delivered
-  - `email.delivery_delayed` - Delivery was delayed
-  - `email.complained` - Recipient marked email as spam
-  - `email.bounced` - Email bounced
-  - `email.opened` - Recipient opened the email
-  - `email.clicked` - Recipient clicked a link
-  - `email.received` - Inbound email received
+#### 🌐 **Domain Management** (6 tools)
+- **create_domain** - Add and configure new sending domains
+- **list_domains** - View all configured domains
+- **get_domain** - Retrieve details for a specific domain
+- **update_domain** - Modify domain settings (click tracking, open tracking)
+- **delete_domain** - Remove a domain from your account
+- **verify_domain** - Verify DNS records for domain authentication
 
-#### 👥 Contact & Audience Management
-- **Create Contact** - Add contacts to an audience
-- **List Contacts** - View all contacts in an audience
-- **Get Contact** - Retrieve individual contact details
-- **Update Contact** - Modify contact information
-- **Delete Contact** - Remove a contact
-- **Create Audience** - Create new audience segments
-- **List Audiences** - View all audiences
-- **Get Audience** - Retrieve audience details
-- **Delete Audience** - Remove an audience
+#### 🔑 **API Key Management** (3 tools)
+- **create_api_key** - Generate new API keys with specific permissions
+- **list_api_keys** - View all API keys
+- **delete_api_key** - Revoke an API key
 
-#### 📢 Broadcast Operations
-- **Create Broadcast** - Set up email broadcast campaigns
-- **List Broadcasts** - View all broadcasts
-- **Get Broadcast** - Retrieve broadcast details
-- **Update Broadcast** - Modify broadcast settings
-- **Delete Broadcast** - Remove a broadcast
-- **Send Broadcast** - Execute a broadcast campaign to an audience
+#### 👥 **Audiences** (4 tools)
+- **create_audience** - Create new audience segments/mailing lists
+- **list_audiences** - View all audiences
+- **get_audience** - Retrieve audience details with contact count
+- **delete_audience** - Remove an audience
 
-#### 🔑 API Key Management
-- **Create API Key** - Generate new API keys with specific permissions
-- **List API Keys** - View all API keys
-- **Delete API Key** - Revoke an API key
+#### 📇 **Contacts** (13 tools)
+- **create_contact** - Add contacts to an audience
+- **list_contacts** - View all contacts in an audience
+- **get_contact_by_email** - Get contact by email address
+- **get_contact_by_id** - Get contact by ID
+- **update_contact_by_email** - Update contact information by email
+- **update_contact_by_id** - Update contact information by ID
+- **delete_contact_by_email** - Remove a contact by email
+- **delete_contact_by_id** - Remove a contact by ID
+- **add_contact_to_segment** - Add contact to segment
+- **remove_contact_from_segment** - Remove contact from segment
+- **list_contact_segments** - List contact's segments
+- **get_contact_topics** - Get contact topic subscriptions
+- **update_contact_topics** - Update contact topic subscriptions
+
+#### 📝 **Templates** (7 tools)
+- **create_template** - Create email template
+- **list_templates** - List all templates
+- **get_template** - Get template details
+- **update_template** - Update template
+- **delete_template** - Delete template
+- **publish_template** - Publish draft template
+- **duplicate_template** - Duplicate existing template
+
+#### 📢 **Broadcast Operations** (6 tools)
+- **create_broadcast** - Set up email broadcast campaigns
+- **list_broadcasts** - View all broadcasts
+- **get_broadcast** - Retrieve broadcast details with stats
+- **update_broadcast** - Modify broadcast settings
+- **delete_broadcast** - Remove a broadcast
+- **send_broadcast** - Execute a broadcast campaign to an audience
+
+#### 🪝 **Webhook Management** (5 tools)
+- **create_webhook** - Set up webhooks for email events
+- **list_webhooks** - View all configured webhooks
+- **get_webhook** - Retrieve webhook configuration details
+- **update_webhook** - Modify webhook settings
+- **delete_webhook** - Remove a webhook
+
+**Supported Webhook Events:**
+- `email.sent` - Email was accepted by Resend
+- `email.delivered` - Email was successfully delivered
+- `email.delivery_delayed` - Delivery was delayed
+- `email.complained` - Recipient marked email as spam
+- `email.bounced` - Email bounced
+- `email.opened` - Recipient opened the email
+- `email.clicked` - Recipient clicked a link
+- `email.received` - Inbound email received
+
+#### 🎯 **Segments** (4 tools)
+- **create_segment** - Create audience segment
+- **list_segments** - List all segments
+- **get_segment** - Get segment details
+- **delete_segment** - Delete segment
+
+#### 🏷️ **Topics** (5 tools)
+- **create_topic** - Create subscription topic
+- **list_topics** - List all topics
+- **get_topic** - Get topic details
+- **update_topic** - Update topic
+- **delete_topic** - Delete topic
+
+#### 🔧 **Contact Properties** (5 tools)
+- **create_contact_property** - Create custom contact property
+- **list_contact_properties** - List all contact properties
+- **get_contact_property** - Get property details
+- **update_contact_property** - Update property
+- **delete_contact_property** - Delete property
 
 ### 🛠️ MCP Capabilities
 
-- **Tools**: All Resend API operations exposed as invocable tools
+- **Tools**: All Resend API operations exposed as invocable tools (70+ tools)
 - **Resources**: Access to email templates and configurations
 - **Prompts**: Pre-configured prompts for common email operations
 - **Error Handling**: Comprehensive error messages and validation
 - **Rate Limiting**: Respects Resend's rate limits (2 requests/second default)
 
-## Installation
+## 📋 Prerequisites
 
-### Prerequisites
+- **Node.js** 18+ (recommended: v20 or later)
+- **TypeScript** 5+
+- A **Resend API key** ([Get one here](https://resend.com))
+- An **MCP-compatible client** (Claude Desktop, Continue, Cline, etc.)
 
-- Node.js 18+ or Python 3.10+
-- A Resend API key (get one at [resend.com](https://resend.com))
-- An MCP-compatible client (Claude Desktop, Continue, etc.)
+## 🛠️ Installation
 
 ### Using npm/npx
 
@@ -114,29 +161,41 @@ git clone https://github.com/QrCommunication/resend-full-mcp.git
 cd resend-full-mcp
 
 # Install dependencies
-npm install  # or: pip install -e .
+npm install
 
 # Build the project
-npm run build  # or: python -m build
+npm run build
 
-# Run the server
-npm start  # or: python -m resend_full_mcp
+# Start the server
+npm start
 ```
 
-## Configuration
+### Development Mode
+
+```bash
+# Start with auto-reload
+npm run dev
+```
+
+## 🔧 Configuration
 
 ### Environment Variables
 
-The server requires the following environment variable:
+Create a `.env` file in the project root:
 
 ```bash
-# Required: Your Resend API key
+# Copy the example file
+cp .env.example .env
+```
+
+**Required:**
+```env
+# Your Resend API key from the dashboard
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxx
 ```
 
-Optional configuration:
-
-```bash
+**Optional:**
+```env
 # API base URL (default: https://api.resend.com)
 RESEND_API_BASE_URL=https://api.resend.com
 
@@ -146,6 +205,8 @@ DEBUG=true
 # Custom rate limit (requests per second, default: 2)
 RATE_LIMIT=2
 ```
+
+> **Security Note**: Never commit your `.env` file to version control. It's already included in `.gitignore`.
 
 ### MCP Client Configuration
 
@@ -202,370 +263,203 @@ Add to your MCP settings:
 }
 ```
 
-## Usage
+## 📖 Usage
 
 Once configured, you can use the server through your MCP client. Here are some example interactions:
 
 ### Sending an Email
 
+**AI Interaction:**
 ```
-AI: Can you send an email to john@example.com about our new product launch?
+You: Can you send an email to john@example.com about our new product launch?
 
-Response: I'll send that email using the send_email tool...
+AI: I'll send that email using the send_email tool...
+```
+
+**Direct Tool Call:**
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "send_email",
+    "arguments": {
+      "from": "Your Name <onboarding@yourdomain.com>",
+      "to": ["john@example.com"],
+      "subject": "New Product Launch",
+      "html": "<p>We're excited to announce our <strong>new product</strong>!</p>",
+      "text": "We're excited to announce our new product!"
+    }
+  }
+}
 ```
 
 ### Batch Email Sending
 
+**AI Interaction:**
 ```
-AI: Send a welcome email to these 50 new users: [list of emails]
+You: Send a welcome email to these 50 new users: [list of emails]
 
-Response: I'll use the batch_send_emails tool to send all 50 emails efficiently...
+AI: I'll use the send_batch_emails tool to send all 50 emails efficiently...
+```
+
+**Direct Tool Call:**
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "send_batch_emails",
+    "arguments": {
+      "emails": [
+        {
+          "from": "team@yourdomain.com",
+          "to": ["user1@example.com"],
+          "subject": "Welcome!",
+          "html": "<p>Welcome to our service!</p>"
+        },
+        {
+          "from": "team@yourdomain.com",
+          "to": ["user2@example.com"],
+          "subject": "Welcome!",
+          "html": "<p>Welcome to our service!</p>"
+        }
+      ]
+    }
+  }
+}
 ```
 
 ### Managing Domains
 
+**AI Interaction:**
 ```
-AI: Add my domain example.com and show me the DNS records I need to configure
+You: Add my domain example.com and show me the DNS records I need to configure
 
-Response: I'll create the domain and retrieve the verification records...
+AI: I'll create the domain and retrieve the verification records...
+```
+
+**Direct Tool Call:**
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_domain",
+    "arguments": {
+      "name": "example.com",
+      "region": "us-east-1"
+    }
+  }
+}
 ```
 
 ### Setting Up Webhooks
 
+**AI Interaction:**
 ```
-AI: Set up a webhook to notify me when emails are delivered or bounced
+You: Set up a webhook to notify me when emails are delivered or bounced
 
-Response: I'll create a webhook for email.delivered and email.bounced events...
-```
-
-### Working with Broadcasts
-
-```
-AI: Create a broadcast for our monthly newsletter to the "customers" audience
-
-Response: I'll set up the broadcast campaign...
+AI: I'll create a webhook for email.delivered and email.bounced events...
 ```
 
-## API Reference
-
-### Email Tools
-
-#### `send_email`
-Send a single email.
-
-**Parameters:**
-- `from` (string, required) - Sender email address
-- `to` (string|string[], required) - Recipient email address(es)
-- `subject` (string, required) - Email subject
-- `html` (string) - HTML content
-- `text` (string) - Plain text content
-- `cc` (string|string[]) - CC recipients
-- `bcc` (string|string[]) - BCC recipients
-- `reply_to` (string|string[]) - Reply-to address(es)
-- `attachments` (array) - File attachments
-- `headers` (object) - Custom email headers
-- `tags` (array) - Email tags for tracking
-- `scheduled_at` (string) - ISO 8601 timestamp for scheduling
-
-**Returns:** Email ID and status
-
-#### `batch_send_emails`
-Send up to 100 emails in a single request.
-
-**Parameters:**
-- `emails` (array, required) - Array of email objects (same structure as send_email)
-
-**Returns:** Array of email IDs and statuses
-
-#### `list_emails`
-List sent emails with pagination.
-
-**Parameters:**
-- `limit` (number) - Number of results per page (default: 100)
-- `offset` (number) - Pagination offset
-
-**Returns:** Array of email objects with metadata
-
-#### `get_email`
-Get details of a specific email.
-
-**Parameters:**
-- `email_id` (string, required) - The email ID
-
-**Returns:** Email object with full details
-
-#### `update_email`
-Update email properties.
-
-**Parameters:**
-- `email_id` (string, required) - The email ID
-- `scheduled_at` (string) - New scheduled time
-
-**Returns:** Updated email object
-
-#### `cancel_email`
-Cancel a scheduled email.
-
-**Parameters:**
-- `email_id` (string, required) - The email ID
-
-**Returns:** Cancellation confirmation
-
-### Domain Tools
-
-#### `create_domain`
-Create a new sending domain.
-
-**Parameters:**
-- `name` (string, required) - Domain name (e.g., "example.com")
-- `region` (string) - Region: "us-east-1", "eu-west-1", or "sa-east-1"
-
-**Returns:** Domain object with DNS records
-
-#### `list_domains`
-List all configured domains.
-
-**Returns:** Array of domain objects
-
-#### `get_domain`
-Get details of a specific domain.
-
-**Parameters:**
-- `domain_id` (string, required) - The domain ID
-
-**Returns:** Domain object with verification status
-
-#### `update_domain`
-Update domain settings.
-
-**Parameters:**
-- `domain_id` (string, required) - The domain ID
-- `click_tracking` (boolean) - Enable/disable click tracking
-- `open_tracking` (boolean) - Enable/disable open tracking
-
-**Returns:** Updated domain object
-
-#### `delete_domain`
-Delete a domain.
-
-**Parameters:**
-- `domain_id` (string, required) - The domain ID
-
-**Returns:** Deletion confirmation
-
-#### `verify_domain`
-Verify domain DNS records.
-
-**Parameters:**
-- `domain_id` (string, required) - The domain ID
-
-**Returns:** Verification status
-
-### Webhook Tools
-
-#### `create_webhook`
-Create a new webhook.
-
-**Parameters:**
-- `url` (string, required) - Webhook endpoint URL
-- `events` (string[], required) - Array of event types to subscribe to
-
-**Returns:** Webhook object with secret
-
-#### `list_webhooks`
-List all configured webhooks.
-
-**Returns:** Array of webhook objects
-
-#### `get_webhook`
-Get details of a specific webhook.
-
-**Parameters:**
-- `webhook_id` (string, required) - The webhook ID
-
-**Returns:** Webhook object
-
-#### `update_webhook`
-Update webhook configuration.
-
-**Parameters:**
-- `webhook_id` (string, required) - The webhook ID
-- `url` (string) - New webhook URL
-- `events` (string[]) - New event types
-
-**Returns:** Updated webhook object
-
-#### `delete_webhook`
-Delete a webhook.
-
-**Parameters:**
-- `webhook_id` (string, required) - The webhook ID
-
-**Returns:** Deletion confirmation
-
-### Contact Tools
-
-#### `create_contact`
-Add a contact to an audience.
-
-**Parameters:**
-- `audience_id` (string, required) - The audience ID
-- `email` (string, required) - Contact email
-- `first_name` (string) - First name
-- `last_name` (string) - Last name
-- `unsubscribed` (boolean) - Subscription status
-
-**Returns:** Contact object
-
-#### `list_contacts`
-List contacts in an audience.
-
-**Parameters:**
-- `audience_id` (string, required) - The audience ID
-
-**Returns:** Array of contact objects
-
-#### `get_contact`
-Get contact details.
-
-**Parameters:**
-- `contact_id` (string, required) - The contact ID
-
-**Returns:** Contact object
-
-#### `update_contact`
-Update contact information.
-
-**Parameters:**
-- `contact_id` (string, required) - The contact ID
-- `email` (string) - New email
-- `first_name` (string) - New first name
-- `last_name` (string) - New last name
-- `unsubscribed` (boolean) - New subscription status
-
-**Returns:** Updated contact object
-
-#### `delete_contact`
-Delete a contact.
-
-**Parameters:**
-- `contact_id` (string, required) - The contact ID
-
-**Returns:** Deletion confirmation
-
-### Audience Tools
-
-#### `create_audience`
-Create a new audience.
-
-**Parameters:**
-- `name` (string, required) - Audience name
-
-**Returns:** Audience object
-
-#### `list_audiences`
-List all audiences.
-
-**Returns:** Array of audience objects
-
-#### `get_audience`
-Get audience details.
-
-**Parameters:**
-- `audience_id` (string, required) - The audience ID
-
-**Returns:** Audience object with contact count
-
-#### `delete_audience`
-Delete an audience.
-
-**Parameters:**
-- `audience_id` (string, required) - The audience ID
-
-**Returns:** Deletion confirmation
-
-### Broadcast Tools
-
-#### `create_broadcast`
-Create a new broadcast.
-
-**Parameters:**
-- `name` (string, required) - Broadcast name
-- `audience_id` (string, required) - Target audience ID
-- `from` (string, required) - Sender email
-- `subject` (string, required) - Email subject
-- `html` (string) - HTML content
-- `text` (string) - Plain text content
-
-**Returns:** Broadcast object
-
-#### `list_broadcasts`
-List all broadcasts.
-
-**Returns:** Array of broadcast objects
-
-#### `get_broadcast`
-Get broadcast details.
-
-**Parameters:**
-- `broadcast_id` (string, required) - The broadcast ID
-
-**Returns:** Broadcast object with stats
-
-#### `update_broadcast`
-Update broadcast settings.
-
-**Parameters:**
-- `broadcast_id` (string, required) - The broadcast ID
-- `name` (string) - New name
-- `subject` (string) - New subject
-- `html` (string) - New HTML content
-
-**Returns:** Updated broadcast object
-
-#### `delete_broadcast`
-Delete a broadcast.
-
-**Parameters:**
-- `broadcast_id` (string, required) - The broadcast ID
-
-**Returns:** Deletion confirmation
-
-#### `send_broadcast`
-Send a broadcast to its configured audience.
-
-**Parameters:**
-- `broadcast_id` (string, required) - The broadcast ID
-- `scheduled_at` (string) - Optional: Schedule for later
-
-**Returns:** Send confirmation with stats
-
-### API Key Tools
-
-#### `create_api_key`
-Create a new API key.
-
-**Parameters:**
-- `name` (string, required) - API key name
-- `permission` (string) - "full_access" or "sending_access"
-- `domain_id` (string) - Restrict to specific domain
-
-**Returns:** API key object (includes the actual key - save it!)
-
-#### `list_api_keys`
-List all API keys.
-
-**Returns:** Array of API key objects (without actual keys)
-
-#### `delete_api_key`
-Delete an API key.
-
-**Parameters:**
-- `api_key_id` (string, required) - The API key ID
-
-**Returns:** Deletion confirmation
-
-## Security
+**Direct Tool Call:**
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_webhook",
+    "arguments": {
+      "endpoint": "https://yourapp.com/webhooks/resend",
+      "events": ["email.delivered", "email.bounced"]
+    }
+  }
+}
+```
+
+### Working with Audiences and Contacts
+
+**Creating an Audience:**
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_audience",
+    "arguments": {
+      "name": "Newsletter Subscribers"
+    }
+  }
+}
+```
+
+**Adding a Contact:**
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_contact",
+    "arguments": {
+      "audience_id": "your_audience_id",
+      "email": "subscriber@example.com",
+      "first_name": "John",
+      "last_name": "Doe"
+    }
+  }
+}
+```
+
+### Creating and Sending Broadcasts
+
+**AI Interaction:**
+```
+You: Create a broadcast for our monthly newsletter to the "customers" audience
+
+AI: I'll set up the broadcast campaign...
+```
+
+**Direct Tool Call:**
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_broadcast",
+    "arguments": {
+      "name": "Monthly Newsletter",
+      "segment_id": "your_segment_id",
+      "from": "newsletter@yourdomain.com",
+      "subject": "This Month's Updates",
+      "html": "<h1>Monthly Updates</h1><p>Here's what happened this month...</p>",
+      "send": false
+    }
+  }
+}
+```
+
+### Listing All Available Tools
+
+```json
+{
+  "method": "tools/list",
+  "params": {}
+}
+```
+
+This will return all 70+ tools with their descriptions and input schemas.
+
+## 🏗️ Project Structure
+
+```
+resend-full-mcp/
+├── src/
+│   └── index.ts          # Main MCP server implementation
+├── dist/                 # Compiled JavaScript (generated)
+├── package.json          # Project dependencies and scripts
+├── tsconfig.json         # TypeScript configuration
+├── .env                  # Environment variables (not in git)
+├── .env.example          # Environment template
+├── .gitignore            # Git ignore rules
+├── LICENSE               # MIT License
+└── README.md             # This file
+```
+
+## 🔒 Security
 
 ### API Key Management
 
@@ -590,7 +484,7 @@ Delete an API key.
 - Follow GDPR and other privacy regulations when handling contact data
 - Implement proper unsubscribe mechanisms
 
-## Rate Limiting
+## ⚡ Rate Limiting
 
 Resend enforces rate limits to ensure service quality:
 
@@ -600,7 +494,7 @@ Resend enforces rate limits to ensure service quality:
 
 The server automatically handles rate limiting and will retry requests when appropriate.
 
-## Error Handling
+## 🔧 Error Handling
 
 The server provides detailed error messages for common issues:
 
@@ -623,72 +517,65 @@ The server provides detailed error messages for common issues:
 - `500 Internal Server Error` - Resend service issue
 - `503 Service Unavailable` - Temporary service disruption
 
-## Development
+## 🐛 Troubleshooting
 
-### Project Structure
+### Error: "RESEND_API_KEY environment variable is not set"
 
+**Solution**: Create a `.env` file with your Resend API key:
+```bash
+echo "RESEND_API_KEY=re_your_key_here" > .env
 ```
-resend-full-mcp/
-├── src/
-│   ├── index.ts/py          # Main entry point
-│   ├── server.ts/py         # MCP server implementation
-│   ├── tools/               # Tool implementations
-│   │   ├── emails.ts/py
-│   │   ├── domains.ts/py
-│   │   ├── webhooks.ts/py
-│   │   ├── contacts.ts/py
-│   │   ├── audiences.ts/py
-│   │   ├── broadcasts.ts/py
-│   │   └── api-keys.ts/py
-│   ├── types.ts/py          # Type definitions
-│   └── utils.ts/py          # Helper functions
-├── tests/                   # Test suite
-├── package.json / setup.py
-├── tsconfig.json / pyproject.toml
-├── README.md
-└── LICENSE
-```
+
+### Error: "Tool execution failed"
+
+**Possible causes**:
+- Invalid API key
+- Missing required parameters
+- API rate limits exceeded
+- Network connectivity issues
+
+**Solution**: Check the error message details and verify your API key and parameters.
+
+### Error: "Unknown tool"
+
+**Solution**: Verify the tool name using the `tools/list` method to see all available tools.
+
+## 🛠️ Development
 
 ### Building from Source
 
 ```bash
-# TypeScript/Node.js
+# Install dependencies
 npm install
-npm run build
-npm test
 
-# Python
-pip install -e ".[dev]"
-python -m pytest
+# Build the project
+npm run build
+
+# Run tests (if available)
+npm test
 ```
 
-### Running Tests
+### Running in Development Mode
 
 ```bash
-# Unit tests
-npm test  # or: pytest
-
-# Integration tests
-npm run test:integration
-
-# E2E tests
-npm run test:e2e
+# Start with auto-reload
+npm run dev
 ```
 
 ### Code Quality
 
 ```bash
 # Linting
-npm run lint  # or: flake8 src/
+npm run lint
 
 # Formatting
-npm run format  # or: black src/
+npm run format
 
 # Type checking
-npm run typecheck  # or: mypy src/
+npm run typecheck
 ```
 
-## Contributing
+## 🤝 Contributing
 
 We welcome contributions! Please follow these guidelines:
 
@@ -700,10 +587,10 @@ We welcome contributions! Please follow these guidelines:
 
 ### Development Setup
 
-1. Clone your fork
-2. Install dependencies: `npm install` or `pip install -e ".[dev]"`
+1. Clone your fork: `git clone https://github.com/YOUR_USERNAME/resend-full-mcp.git`
+2. Install dependencies: `npm install`
 3. Create a `.env` file with your Resend API key
-4. Run tests: `npm test` or `pytest`
+4. Run tests: `npm test`
 5. Make your changes
 6. Ensure all tests pass and linting is clean
 7. Submit a PR
@@ -718,7 +605,7 @@ When reporting issues, please include:
 - Environment details (OS, Node/Python version, MCP client)
 - Relevant error messages or logs
 
-## Roadmap
+## 🗺️ Roadmap
 
 Future enhancements planned:
 
@@ -731,40 +618,65 @@ Future enhancements planned:
 - [ ] Custom retry strategies
 - [ ] Streaming support for large operations
 
-## Changelog
+## 📝 Changelog
 
 ### v1.0.0 (2026-02-03)
 - Initial release
-- 100% Resend API coverage
+- 100% Resend API coverage (70+ tools across 12 modules)
 - All email operations (send, batch, schedule, cancel)
 - Complete domain management
 - Webhook configuration and management
 - Contact and audience management
 - Broadcast operations
 - API key management
+- Templates support
+- Segments and topics management
+- Contact properties support
 - Comprehensive error handling
 - Rate limiting support
 
-## License
+## 📄 License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
 Copyright (c) 2026 Qr Communication
 
-## Acknowledgments
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## 🙏 Acknowledgments
 
 - [Resend](https://resend.com) - For providing an excellent email API
 - [Model Context Protocol](https://modelcontextprotocol.io) - For the MCP specification
 - [Anthropic](https://anthropic.com) - For Claude and MCP development tools
+- The Model Context Protocol community
+- All contributors to this project
 
-## Support
+## 📞 Support
 
-- **Documentation**: [https://github.com/QrCommunication/resend-full-mcp](https://github.com/QrCommunication/resend-full-mcp)
-- **Issues**: [https://github.com/QrCommunication/resend-full-mcp/issues](https://github.com/QrCommunication/resend-full-mcp/issues)
+- **Documentation**: [GitHub Repository](https://github.com/QrCommunication/resend-full-mcp)
+- **Issues**: [GitHub Issues](https://github.com/QrCommunication/resend-full-mcp/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/QrCommunication/resend-full-mcp/discussions)
 - **Resend Docs**: [https://resend.com/docs](https://resend.com/docs)
+- **Resend API Reference**: [https://resend.com/docs/api-reference](https://resend.com/docs/api-reference)
 - **MCP Docs**: [https://modelcontextprotocol.io](https://modelcontextprotocol.io)
 
-## Related Projects
+## 🔗 Related Projects
 
 - [Resend Node SDK](https://github.com/resend/resend-node)
 - [Resend Python SDK](https://github.com/resend/resend-python)
