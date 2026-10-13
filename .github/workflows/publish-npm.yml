@@ -5,12 +5,7 @@ on:
     - v*.*.*
 jobs:
   build-and-publish:
-    runs-on:
-    - self-hosted
-    - linux
-    - x64
-    - hetzner
-    - qrcom
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
       packages: write
