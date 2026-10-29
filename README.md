@@ -4,7 +4,7 @@
 [![CI](https://github.com/QrCommunication/resend-full-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/QrCommunication/resend-full-mcp/actions/workflows/ci.yml)
 [![Documentation](https://github.com/QrCommunication/resend-full-mcp/actions/workflows/deploy-docs.yml/badge.svg)](https://qrcommunication.github.io/resend-full-mcp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen)](https://nodejs.org)
 
 A comprehensive **Model Context Protocol (MCP)** server that provides 100% coverage of the **Resend API**. This implementation enables AI assistants to seamlessly integrate with Resend's powerful email infrastructure, covering all 12 modules and 70+ tools available in the Resend email platform.
 
@@ -132,7 +132,7 @@ This MCP server implements **all** endpoints from the Resend API across 12 compr
 
 ## 📋 Prerequisites
 
-- **Node.js** 18+ (recommended: v20 or later)
+- **Node.js** 20+ (recommended: v22 or later)
 - **TypeScript** 5+
 - A **Resend API key** ([Get one here](https://resend.com))
 - An **MCP-compatible client** (Claude Desktop, Continue, Cline, etc.)

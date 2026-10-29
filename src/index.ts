@@ -3,7 +3,9 @@
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv >= 17 prints an "injected env" banner on stdout unless `quiet` is set;
+// stdout carries the JSON responses of this stdio server, so keep it silent.
+dotenv.config({ quiet: true });
 
 // Initialize Resend client
 const resend = new Resend(process.env.RESEND_API_KEY);

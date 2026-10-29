@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-10-29
+
+### Changed
+- `resend` 3.5 → 6.35 (runtime). Build and `tools/list` smoke test unchanged (70 tools).
+- `dotenv` 16 → 18 (runtime). `dotenv.config({ quiet: true })` keeps stdout free of the
+  "injected env" banner that dotenv ≥ 17 prints by default.
+- `typescript` 5.9 → 7.0, `@types/node` 20 → 26 (dev).
+- Minimum Node.js is now 20 (required by `resend` 6; Node 18 is end-of-life).
+
 ## [1.0.0] - 2026-02-03
 
 ### Added
